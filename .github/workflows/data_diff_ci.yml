@@ -14,7 +14,7 @@ jobs:
 
       - name: Rodar Joyce Data Diff Action (v2.0.0)
         # Troque 'joycejdiong' pelo seu usuário
-        uses: joycejdm/data-diff-action@v2.0.0 
+        uses: joycejdm/data-diff-action@v2.0.1 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           sf_account: ${{ secrets.SF_ACCOUNT }} # O novo secret completo

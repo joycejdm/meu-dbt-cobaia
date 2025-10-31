@@ -22,7 +22,7 @@ jobs:
       # 2. A MÁGICA: Chamar a sua Action!
       - name: Rodar Joyce Data Diff Action
         # Troque 'joycejdiong' pelo seu usuário
-        uses: joycejdiong/data-diff-action@v1.1.0 
+        uses: joycejdm/data-diff-action@v1.1.0 
 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

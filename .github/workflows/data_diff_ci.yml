@@ -1,28 +1,35 @@
 # .github/workflows/data_diff_ci.yml
 
 name: 'CI - Data Diff'
-
-# Define o gatilho: rodar sempre que um PR for aberto ou atualizado
 on:
   pull_request:
-    branches:
-      - main # Ou a sua branch principal
+    branches: [ main ]
+permissions:
+  pull-requests: write
 
 jobs:
   run-data-diff:
-    runs-on: ubuntu-latest # Rodar numa máquina Linux
-
+    runs-on: ubuntu-latest
     steps:
-      # 1. Passo obrigatório: Fazer o "checkout" do código do PR
+      # 1. Checkout (ESSENCIAL para o dbt encontrar os ficheiros)
       - name: Checkout código
         uses: actions/checkout@v4
 
-      # 2. A MÁGICA: Chamar a sua Action!
-      - name: Rodar Joyce Data Diff Action
-        # !!! MUDE A LINHA SEGUINTE !!!
-        # Troque 'seu-usuario' pelo seu nome de usuário do GitHub
-        uses: joycejdm/data-diff-action@main 
-
+      # 2. Chamar a Action v2.1.0
+      - name: Rodar Joyce Data Diff Action (v2.1.0)
+        # Troque 'joycejdiong' pelo seu usuário
+        uses: joycejdm/data-diff-action@v2.1.0 
         with:
-          # Passar o token secreto para a sua Action
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          sf_account: ${{ secrets.SF_ACCOUNT }}
+          sf_user: ${{ secrets.SF_USER }}
+          sf_password: ${{ secrets.SF_PASSWORD }}
+          sf_role: ${{ secrets.SF_ROLE }}
+          sf_warehouse: ${{ secrets.SF_WAREHOUSE }}
+          sf_database: ${{ secrets.SF_DATABASE }}
+
+          # NOVO: O schema de produção para clonar
+          sf_schema: ${{ secrets.SF_SCHEMA }} 
+
+          # NOVO: A pasta onde o 'dbt_project.yml' está
+          dbt_project_dir: 'dbt_cobaia_project'

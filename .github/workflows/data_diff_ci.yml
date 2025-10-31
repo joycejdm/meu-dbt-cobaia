@@ -1,0 +1,28 @@
+# .github/workflows/data_diff_ci.yml
+
+name: 'CI - Data Diff'
+
+# Define o gatilho: rodar sempre que um PR for aberto ou atualizado
+on:
+  pull_request:
+    branches:
+      - main # Ou a sua branch principal
+
+jobs:
+  run-data-diff:
+    runs-on: ubuntu-latest # Rodar numa máquina Linux
+
+    steps:
+      # 1. Passo obrigatório: Fazer o "checkout" do código do PR
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. A MÁGICA: Chamar a sua Action!
+      - name: Rodar Joyce Data Diff Action
+        # !!! MUDE A LINHA SEGUINTE !!!
+        # Troque 'seu-usuario' pelo seu nome de usuário do GitHub
+        uses: joycejdm/data-diff-action@main 
+
+        with:
+          # Passar o token secreto para a sua Action
+          github-token: ${{ secrets.GITHUB_TOKEN }}

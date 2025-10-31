@@ -1,3 +1,5 @@
+# .github/workflows/data_diff_ci.yml
+
 name: 'CI - Data Diff'
 on:
   pull_request:
@@ -9,17 +11,25 @@ jobs:
   run-data-diff:
     runs-on: ubuntu-latest
     steps:
+      # 1. Checkout (ESSENCIAL para o dbt encontrar os ficheiros)
       - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Rodar Joyce Data Diff Action (v2.0.0)
+      # 2. Chamar a Action v2.1.0
+      - name: Rodar Joyce Data Diff Action (v2.1.0)
         # Troque 'joycejdiong' pelo seu usuário
-        uses: joycejdm/data-diff-action@v2.0.1 
+        uses: joycejdm/data-diff-action@v2.1.0 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          sf_account: ${{ secrets.SF_ACCOUNT }} # O novo secret completo
+          sf_account: ${{ secrets.SF_ACCOUNT }}
           sf_user: ${{ secrets.SF_USER }}
           sf_password: ${{ secrets.SF_PASSWORD }}
           sf_role: ${{ secrets.SF_ROLE }}
           sf_warehouse: ${{ secrets.SF_WAREHOUSE }}
           sf_database: ${{ secrets.SF_DATABASE }}
+
+          # NOVO: O schema de produção para clonar
+          sf_schema: ${{ secrets.SF_SCHEMA }} 
+
+          # NOVO: A pasta onde o 'dbt_project.yml' está
+          dbt_project_dir: 'dbt_cobaia_project'

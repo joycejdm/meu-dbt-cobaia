@@ -25,4 +25,4 @@ jobs:
 
         with:
           # Passar o token secreto para a sua Action
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

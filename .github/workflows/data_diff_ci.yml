@@ -1,39 +1,25 @@
-# .github/workflows/data_diff_ci.yml
-
 name: 'CI - Data Diff'
-
 on:
   pull_request:
-    branches:
-      - main
-
+    branches: [ main ]
 permissions:
-  pull-requests: write # Permissão para escrever comentários no PR
+  pull-requests: write
 
 jobs:
   run-data-diff:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Passo obrigatório: Fazer o "checkout" do código do PR
       - name: Checkout código
         uses: actions/checkout@v4
 
-      # 2. A MÁGICA: Chamar a sua Action!
-      - name: Rodar Joyce Data Diff Action
+      - name: Rodar Joyce Data Diff Action (v2.0.0)
         # Troque 'joycejdiong' pelo seu usuário
-        uses: joycejdm/data-diff-action@v1.1.0 
-
+        uses: joycejdm/data-diff-action@v2.0.0 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          sf_account: ${{ secrets.SF_ACCOUNT }}
-          sf_region: ${{ secrets.SF_REGION }}
+          sf_account: ${{ secrets.SF_ACCOUNT }} # O novo secret completo
           sf_user: ${{ secrets.SF_USER }}
           sf_password: ${{ secrets.SF_PASSWORD }}
           sf_role: ${{ secrets.SF_ROLE }}
           sf_warehouse: ${{ secrets.SF_WAREHOUSE }}
           sf_database: ${{ secrets.SF_DATABASE }}
-          sf_schema: ${{ secrets.SF_SCHEMA }}
-
-          # O nosso projeto dbt não está na raiz, está na subpasta 'dbt_cobaia_project'
-          dbt_project_dir: 'dbt_cobaia_project'

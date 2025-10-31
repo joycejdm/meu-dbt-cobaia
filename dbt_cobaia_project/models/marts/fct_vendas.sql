@@ -1,6 +1,6 @@
 select
     id_venda,
     data_venda,
-    valor * 2 as valor -- AQUI ESTÁ A MUDANÇA!
+    valor
 from
     {{ ref('vendas') }}

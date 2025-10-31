@@ -8,6 +8,9 @@ on:
     branches:
       - main # Ou a sua branch principal
 
+      # ADICIONE ESTE BLOCO AQUI
+permissions:
+  pull-requests: write # Permissão para escrever comentários no PR
 jobs:
   run-data-diff:
     runs-on: ubuntu-latest # Rodar numa máquina Linux

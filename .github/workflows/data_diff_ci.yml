@@ -4,6 +4,7 @@ on:
     branches: [ main ]
 permissions:
   pull-requests: write
+  actions: read # Necessário para o bot ler os artefactos
 
 jobs:
   run-data-diff:

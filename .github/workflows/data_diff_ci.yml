@@ -18,7 +18,7 @@ jobs:
       # 2. Chamar a Action v2.1.0
       - name: Rodar Joyce Data Diff Action (v2.1.0)
         # Troque 'joycejdiong' pelo seu usuário
-        uses: joycejdm/data-diff-action@v2.2.0 
+        uses: joycejdm/data-diff-action@v2.2.1 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           sf_account: ${{ secrets.SF_ACCOUNT }}

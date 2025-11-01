@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Rodar Joyce Data Diff Action (v4.0.0)
-        # Troque 'joycejdiong' pelo seu usuário
+        # Troque 'joycejdiong' pelo seu usuário sdasd
         uses: joycejdm/data-diff-action@v0.5.0 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

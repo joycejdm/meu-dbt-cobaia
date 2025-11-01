@@ -1,5 +1,5 @@
 select
-    id_venda,
+    -- id_venda, <-- COLUNA APAGADA
     data_venda,
     valor
 from
